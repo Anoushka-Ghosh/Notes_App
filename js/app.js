@@ -1,6 +1,7 @@
 console.log('this is app.js');
 showNotes();
-//If user adds a note. add it to a local storage.
+
+
 let addBtn = document.getElementById("addBtn");
 addBtn.addEventListener("click", function (e) {
     let addTxt = document.getElementById("addTxt");
@@ -14,12 +15,11 @@ addBtn.addEventListener("click", function (e) {
     notesObj.push(addTxt.value);
     localStorage.setItem("notes", JSON.stringify(notesObj));
     addTxt.value = "";
-    // console.log(notesObj);
     showNotes();
 })
 
 
-//function to show elements from local storage
+
 function showNotes() {
     let notes = localStorage.getItem("notes");
     if (notes == null) {
@@ -49,9 +49,7 @@ function showNotes() {
 }
 
 
-//function to delete a node
 function deleteNote(index){
-    // console.log('I am deleting',index);
     let notes = localStorage.getItem("notes");
     if (notes == null) {
         notesObj = [];
@@ -66,8 +64,7 @@ function deleteNote(index){
 
 let search=document.getElementById("searchTxt")
 search.addEventListener("input",function(){
-    let inputVal=search.value.toLowerCase();
-    // console.log("input event fired",inputVal);
+    let inputVal=search.value;
     let noteCards=document.getElementsByClassName("noteCard");
     Array.from(noteCards).forEach(element=>{
         let cardTxt=element.getElementsByTagName('p')[0].innerText;
@@ -79,11 +76,3 @@ search.addEventListener("input",function(){
         }
     })
 })
-
-/*
-further Features:
-1.add title
-2. mark a note as important
-3. seperate notes by user
-4. synck and host to webserver
-*/
